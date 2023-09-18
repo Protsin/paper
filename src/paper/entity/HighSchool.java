@@ -1,17 +1,16 @@
-package paper;
+package paper.entity;
 
 import java.util.Random;
 
 public class HighSchool extends School {
+  int flag;//根据flag的值判断最后需要补几个）
 
-  int flag;
-
-  HighSchool() {
+  public HighSchool() {
     flag = 0;
   }
 
   @Override
-  String selectSign(int num) {
+  String selectSign(int num) {        // 根据随机数的值生成随机的符号
     String sign = "";
     switch (num) {
       case 0:
@@ -52,11 +51,11 @@ public class HighSchool extends School {
     return sign;
   }
 
-  String preQuestion() {
+  String preQuestion() {         // 预处理：先生成第1个操作数，makeQuestion方法用来生成第2-5个操作上
     Random rand = new Random();
     int temp = rand.nextInt(11);
     String string = "";
-    if (temp == 4) {
+    if (temp == 4) {//第1个操作数前可能有（、sin、cos、tan
       string += "(";
       flag++;
     }
@@ -65,7 +64,7 @@ public class HighSchool extends School {
       string += selectSign(temp);
     }
 
-    temp = rand.nextInt(100) + 1;
+    temp = rand.nextInt(100) + 1;        // 生成第1个操作数
     string += temp;
 
     temp = rand.nextInt(8);
@@ -80,7 +79,7 @@ public class HighSchool extends School {
   }
 
   @Override
-  String makeQuestion() {
+  public String makeQuestion() {         // 生成第2-5个操作数
     Random rand = new Random();
     int temp;
     String string = this.preQuestion();
@@ -99,7 +98,7 @@ public class HighSchool extends School {
         string += selectSign(temp);
       }
 
-      string += rand.nextInt(100) + 1;
+      string += rand.nextInt(100) + 1;     // 生成操作数
 
       temp = rand.nextInt(11);
       if (temp == 5 && flag > 0) {
@@ -111,7 +110,7 @@ public class HighSchool extends School {
       }
     }
 
-    for (int i = 0; i < flag; i++) {
+    for (int i = 0; i < flag; i++) {         // 根据flag的值补）
       string += ")";
     }
     string += "=";

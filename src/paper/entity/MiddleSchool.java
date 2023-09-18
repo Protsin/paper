@@ -1,17 +1,16 @@
-package paper;
+package paper.entity;
 
 import java.util.Random;
 
 public class MiddleSchool extends School {
-
   int flag;
 
-  MiddleSchool() {
+  public MiddleSchool() {
     flag = 0;
   }
 
   @Override
-  String selectSign(int num) {
+  String selectSign(int num) {          // 根据随机数随机生成符号
     String sign = "";
     switch (num) {
       case 0:
@@ -43,7 +42,7 @@ public class MiddleSchool extends School {
     return sign;
   }
 
-  String preQuestion() {
+  String preQuestion() {           // 预处理，生成第一个操作数，区别于makeQuestion，生成第2-5个操作数
     String string = "";
     Random rand = new Random();
     int temp = rand.nextInt(8);
@@ -55,7 +54,7 @@ public class MiddleSchool extends School {
       string += "√";
     }
 
-    temp = rand.nextInt(100) + 1;
+    temp = rand.nextInt(100) + 1;    // 第一个操作数
     string += temp;
 
     temp = rand.nextInt(8);
@@ -70,7 +69,7 @@ public class MiddleSchool extends School {
   }
 
   @Override
-  String makeQuestion() {
+  public String makeQuestion() {
     String string = this.preQuestion();
 
     Random rand = new Random();

@@ -1,11 +1,11 @@
-package paper;
+package paper.entity;
 
 import java.util.Random;
 
 public class PrimarySchool extends School {
 
   @Override
-  String selectSign(int num) {
+  String selectSign(int num) {       // 根据随机数选择符号
     String sign = "";
     sign = "";
     switch (num) {
@@ -36,7 +36,7 @@ public class PrimarySchool extends School {
   }
 
   @Override
-  String makeQuestion() {
+  public String makeQuestion() {         // 生成问题
     String string = "";
     Random rand = new Random();
     int flag = 0;
